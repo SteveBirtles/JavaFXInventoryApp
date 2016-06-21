@@ -5,6 +5,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.event.EventHandler;
 import javafx.stage.WindowEvent;
+import java.util.List;
 
 public class SecondarySceneController
 {
@@ -51,6 +52,13 @@ public class SecondarySceneController
             System.out.println("FXML assertion failure: " + ae.getMessage());
             Application.terminate();
         }
+
+        System.out.println("Populating scene with items from the database...");        
+        @SuppressWarnings("unchecked")
+        List<Category> targetList = categoryChoiceBox.getItems();  // Grab a reference to the listView's current item list.
+        Category.readAll(targetList);       
+        categoryChoiceBox.getSelectionModel().selectFirst();
+
     }
 
     @FXML   void saveButtonClicked()
