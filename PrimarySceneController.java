@@ -1,26 +1,33 @@
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.event.EventHandler;
 import javafx.stage.WindowEvent;
 import java.util.List;
 
-public class SceneController
+public class PrimarySceneController
 {    
     /* The stage that the scene belongs to, required to catch stage events and test for duplicate controllers. */
     private static Stage stage;     
 
     /* These FXML variables exactly corrispond to the controls that make up the scene, as designed in Scene 
      * Builder. It is important to ensure that these match perfectly or the controls won't be interactive. */
-    @FXML   private Pane backgroundPane;    
-    @FXML   private Button yesButton;
-    @FXML   private Button noButton;
-    @FXML   private Button exitButton;
-    @FXML   private ListView listView;
 
-    public SceneController()          // The constructor method, called first when the scene is loaded.
+    @FXML   private ListView mainListView;
+    @FXML   private Button addButton;
+    @FXML   private Button editButton;
+    @FXML   private Button deleteButton;
+    @FXML   private TextField searchTextField;
+    @FXML   private Button searchButton;
+    @FXML   private Button clearButton;
+    @FXML   private Button exitButton;
+
+    public PrimarySceneController()          // The constructor method, called first when the scene is loaded.
     {
         System.out.println("Initialising controllers...");
 
@@ -42,11 +49,14 @@ public class SceneController
         System.out.println("Asserting controls...");
         try
         {
-        	assert backgroundPane != null : "Can't find background pane.";
-        	assert yesButton != null : "Can't find yes button.";
-        	assert noButton != null : "Can't find yes button.";
-        	assert exitButton != null : "Can't find exit button.";
-            assert listView != null : "Can't find list box.";
+            assert mainListView != null : "Can't find mainListView";
+            assert addButton != null : "Can't find addButton";
+            assert editButton != null : "Can't find editButton";
+            assert deleteButton != null : "Can't find deleteButton";
+            assert searchTextField != null : "Can't find searchTextField";
+            assert searchButton != null : "Can't find searchButton";
+            assert clearButton != null : "Can't find clearButton";
+            assert exitButton != null : "Can't find exitButton";
         }
         catch (AssertionError ae)
         {
@@ -57,8 +67,8 @@ public class SceneController
         /* Next, we load the list of fruit from the database and populate the listView. */
         System.out.println("Populating scene with items from the database...");        
         @SuppressWarnings("unchecked")
-        List<Fruit> targetList = listView.getItems();  // Grab a reference to the listView's current item list.
-        Fruit.readAll(targetList);                     // Hand over control to the fruit model to populate this list.
+        List<Thing> targetList = mainListView.getItems();  // Grab a reference to the listView's current item list.
+        Thing.readAll(targetList);                     // Hand over control to the fruit model to populate this list.*/           
     }
 
     /* In order to catch stage events (the main example being the close (X) button being clicked) we need
@@ -85,9 +95,31 @@ public class SceneController
         System.out.println("Yes was clicked!");        
     }
 
-    @FXML   void noClicked()
+    @FXML   void addClicked()
     {
-        System.out.println("No was clicked!");
+        System.out.println("Add was clicked, opening secondary scene.");
+        openNewScene();
+    }
+
+    @FXML   void editClicked()
+    {
+        System.out.println("Edit was clicked, opening secondary scene.");
+        openNewScene();
+    }
+
+    @FXML   void deleteClicked()
+    {
+        System.out.println("Delete was clicked - this feature is not yet implemented!");
+    }
+
+    @FXML   void clearClicked()
+    {
+        System.out.println("Clear was clicked - this feature is not yet implemented!");        
+    }
+
+    @FXML   void goClicked()
+    {
+        System.out.println("Go was clicked - this feature is not yet implemented!");
     }
 
     @FXML   void exitClicked()
@@ -100,7 +132,7 @@ public class SceneController
      * item in the view is currently selected (if any) and outputs it to the console. */    
     @FXML   void listViewClicked()
     {
-        Fruit selectedItem = (Fruit) listView.getSelectionModel().getSelectedItem();
+        Thing selectedItem = (Thing) mainListView.getSelectionModel().getSelectedItem();
 
         if (selectedItem == null)
         {
@@ -110,7 +142,28 @@ public class SceneController
         {
             System.out.println(selectedItem + " (id: " + selectedItem.id + ") is selected.");
         }
-    }    
+    }
+
+    void openNewScene()
+    {
+
+        FXMLLoader loader = new FXMLLoader(Application.class.getResource("SecondaryScene.fxml"));
+
+        try
+        {
+            Stage stage2 = new Stage();
+            stage2.setTitle("Details");
+            stage2.setScene(new Scene(loader.load()));
+            stage2.show();           
+            SecondarySceneController controller2 = loader.getController();
+            controller2.prepareStageEvents(stage2);
+        }
+        catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+
+    }
 
 }
 

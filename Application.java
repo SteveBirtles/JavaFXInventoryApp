@@ -24,21 +24,21 @@ public class Application
     {
         try
         {         
-            database = new DatabaseConnection("Test.db");        // Initiate the database connection.
+            database = new DatabaseConnection("Inventory.db");        // Initiate the database connection.
 
             /* Load the first fxml file that will create our first JavaFX scene. */
-            FXMLLoader loader = new FXMLLoader(Application.class.getResource("DemoScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(Application.class.getResource("PrimaryScene.fxml"));
 
             /* Each scene requires a Window, called a stage. The following creates and displays the stage. */
             Stage stage = new Stage();
-            stage.setTitle("JavaFX Demo");
+            stage.setTitle("JavaFX Inventory App");
             stage.setScene(new Scene(loader.load()));
             stage.show();           
 
             /* Loading the scene will have resulted in the creation of a scene controller. In order for this
              * controller to have direct access to the stage its scene is displayed, the stage is passed to the 
              * controller's prepareStage method. */
-            SceneController controller = loader.getController();
+            PrimarySceneController controller = loader.getController();
             controller.prepareStageEvents(stage);
         }
         catch (Exception ex)    // If anything goes wrong starting the application then call the terminate method.
