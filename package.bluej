@@ -30,11 +30,19 @@ dependency9.from=SecondarySceneController
 dependency9.to=Application
 dependency9.type=UsesDependency
 objectbench.height=76
+<<<<<<< HEAD
 objectbench.width=924
 package.editor.height=878
 package.editor.width=826
 package.editor.x=0
 package.editor.y=0
+=======
+objectbench.width=1260
+package.editor.height=838
+package.editor.width=1162
+package.editor.x=-8
+package.editor.y=-8
+>>>>>>> 5155b9acefc5ba15c650bf15287a168af7f5955c
 package.numDependencies=10
 package.numTargets=6
 package.showExtends=true
@@ -46,8 +54,13 @@ readme.editor.x=0
 readme.editor.y=0
 target1.editor.height=700
 target1.editor.width=900
+<<<<<<< HEAD
 target1.editor.x=420
 target1.editor.y=176
+=======
+target1.editor.x=0
+target1.editor.y=0
+>>>>>>> 5155b9acefc5ba15c650bf15287a168af7f5955c
 target1.height=130
 target1.name=Category
 target1.showInterface=false
@@ -56,8 +69,8 @@ target1.typeParameters=
 target1.width=160
 target1.x=490
 target1.y=220
-target2.editor.height=1066
-target2.editor.width=1936
+target2.editor.height=1040
+target2.editor.width=1296
 target2.editor.x=-8
 target2.editor.y=-8
 target2.height=130
@@ -69,10 +82,17 @@ target2.typeParameters=
 target2.width=170
 target2.x=90
 target2.y=220
+<<<<<<< HEAD
 target3.editor.height=1050
 target3.editor.width=960
 target3.editor.x=0
 target3.editor.y=0
+=======
+target3.editor.height=1040
+target3.editor.width=1296
+target3.editor.x=-8
+target3.editor.y=-8
+>>>>>>> 5155b9acefc5ba15c650bf15287a168af7f5955c
 target3.height=130
 target3.name=Application
 target3.naviview.expanded=true
@@ -82,10 +102,17 @@ target3.typeParameters=
 target3.width=170
 target3.x=90
 target3.y=60
+<<<<<<< HEAD
 target4.editor.height=1050
 target4.editor.width=960
 target4.editor.x=0
 target4.editor.y=0
+=======
+target4.editor.height=1040
+target4.editor.width=1296
+target4.editor.x=-8
+target4.editor.y=-8
+>>>>>>> 5155b9acefc5ba15c650bf15287a168af7f5955c
 target4.height=130
 target4.name=PrimarySceneController
 target4.naviview.expanded=true
@@ -95,8 +122,8 @@ target4.typeParameters=
 target4.width=160
 target4.x=300
 target4.y=60
-target5.editor.height=1066
-target5.editor.width=1936
+target5.editor.height=1040
+target5.editor.width=1296
 target5.editor.x=-8
 target5.editor.y=-8
 target5.height=130
