@@ -11,11 +11,14 @@ public class SecondarySceneController
 {
 
     private Stage stage;
+    private PrimarySceneController parent;
 
     @FXML   private TextField nameTextField;
     @FXML   private ChoiceBox categoryChoiceBox;
     @FXML   private Button saveButton;
     @FXML   private Button cancelButton;
+
+    private Thing thing;
 
     public SecondarySceneController()
     {
@@ -34,7 +37,6 @@ public class SecondarySceneController
                     stage.close();
                 }
             });
-
     }         
 
     @FXML   void initialize() 
@@ -61,9 +63,36 @@ public class SecondarySceneController
 
     }
 
+    public void setParent(PrimarySceneController parent)
+    {
+        this.parent = parent;
+    }
+
+    public void loadItem(int id)
+    {        
+        thing = Thing.getById(id);
+        nameTextField.setText(thing.name);
+    }
+
     @FXML   void saveButtonClicked()
     {
-        System.out.println("Save button clicked - feature not yet implemented!");        
+        System.out.println("Save button clicked!");        
+
+        if (thing == null)
+        {   
+            thing = new Thing(0, "", 0);
+        }
+
+        thing.name = nameTextField.getText();
+
+        Category selectedCategory = (Category) categoryChoiceBox.getSelectionModel().getSelectedItem();        
+        thing.categoryId = selectedCategory.id;
+
+        thing.save();
+
+        parent.initialize();
+
+        stage.close();
     }
 
     @FXML   void cancelButtonClicked()

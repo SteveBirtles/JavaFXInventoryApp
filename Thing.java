@@ -40,8 +40,8 @@ public class Thing
 
             if (results != null)        // If some results are returned from the query...
             {
-                try {								// ...add each one to the list.
-                    while (results.next()) {        			                           
+                try {                               // ...add each one to the list.
+                    while (results.next()) {                                               
                         list.add( new Thing(results.getInt("id"), results.getString("name"), results.getInt("categoryId")));
                     }
                 }
@@ -50,6 +50,100 @@ public class Thing
                     System.out.println("Database result processing error: " + resultsexception.getMessage());
                 }
             }
+        }
+
+    }
+
+    public static Thing getById(int id)
+    {
+        Thing thing = null;
+
+        PreparedStatement statement = Application.database.newStatement("SELECT id, name, categoryId FROM things WHERE id = ?"); 
+
+        try 
+        {
+            if (statement != null)
+            {
+                statement.setInt(1, id);
+                ResultSet results = Application.database.runQuery(statement);
+
+                if (results != null)
+                {
+                    thing = new Thing(results.getInt("id"), results.getString("name"), results.getInt("categoryId"));
+                }
+            }
+        }
+        catch (SQLException resultsexception)
+        {
+            System.out.println("Database result processing error: " + resultsexception.getMessage());
+        }
+
+        return thing;
+    }
+
+    public static void deleteById(int id)
+    {
+        try 
+        {
+
+            PreparedStatement statement = Application.database.newStatement("DELETE FROM things WHERE id = ?");             
+            statement.setInt(1, id);
+
+            if (statement != null)
+            {
+                Application.database.executeUpdate(statement);
+            }
+        }
+        catch (SQLException resultsexception)
+        {
+            System.out.println("Database result processing error: " + resultsexception.getMessage());
+        }
+
+    }
+
+    public void save()    
+    {
+        PreparedStatement statement;
+
+        try 
+        {
+
+            if (id == 0)
+            {
+
+                statement = Application.database.newStatement("SELECT id FROM things ORDER BY id DESC");             
+
+                if (statement != null)	
+                {
+                    ResultSet results = Application.database.runQuery(statement);
+                    if (results != null)
+                    {
+                        id = results.getInt("id") + 1;
+                    }
+                }
+
+                statement = Application.database.newStatement("INSERT INTO things (id, name, categoryId) VALUES (?, ?, ?)");             
+                statement.setInt(1, id);
+                statement.setString(2, name);
+                statement.setInt(3, categoryId);         
+
+            }
+            else
+            {
+                statement = Application.database.newStatement("UPDATE things SET name = ?, categoryId = ? WHERE id = ?");             
+                statement.setString(1, name);
+                statement.setInt(2, categoryId);   
+                statement.setInt(3, id);
+            }
+
+            if (statement != null)
+            {
+                Application.database.executeUpdate(statement);
+            }
+        }
+        catch (SQLException resultsexception)
+        {
+            System.out.println("Database result processing error: " + resultsexception.getMessage());
         }
 
     }

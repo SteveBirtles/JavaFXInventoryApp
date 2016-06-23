@@ -47,12 +47,24 @@ public class DatabaseConnection {
     public ResultSet runQuery(PreparedStatement statement)
     {               
         try {            
-            return statement.executeQuery();           
+            return statement.executeQuery();                       
         }
         catch (SQLException queryexception) 
         {
             System.out.println("Database query error: " + queryexception.getMessage());
             return null;
+        }
+    }
+
+    /* This method is used to execute a statement that changes the database (i.e. INSERT, UPDATE or DELETE). */
+    public void executeUpdate(PreparedStatement statement)
+    {               
+        try {            
+            statement.executeUpdate();                       
+        }
+        catch (SQLException queryexception) 
+        {
+            System.out.println("Database update error: " + queryexception.getMessage());
         }
     }
 

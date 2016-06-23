@@ -98,18 +98,24 @@ public class PrimarySceneController
     @FXML   void addClicked()
     {
         System.out.println("Add was clicked, opening secondary scene.");
-        openNewScene();
+        openNewScene(0);
     }
 
     @FXML   void editClicked()
     {
         System.out.println("Edit was clicked, opening secondary scene.");
-        openNewScene();
+        Thing selectedItem = (Thing) mainListView.getSelectionModel().getSelectedItem();
+        openNewScene(selectedItem.id);
     }
 
     @FXML   void deleteClicked()
     {
-        System.out.println("Delete was clicked - this feature is not yet implemented!");
+        System.out.println("Delete was clicked!");
+        
+        Thing selectedItem = (Thing) mainListView.getSelectionModel().getSelectedItem();
+        Thing.deleteById(selectedItem.id);
+        initialize();
+        
     }
 
     @FXML   void clearClicked()
@@ -144,7 +150,7 @@ public class PrimarySceneController
         }
     }
 
-    void openNewScene()
+    void openNewScene(int id)
     {
 
         FXMLLoader loader = new FXMLLoader(Application.class.getResource("SecondaryScene.fxml"));
@@ -157,6 +163,10 @@ public class PrimarySceneController
             stage2.show();           
             SecondarySceneController controller2 = loader.getController();
             controller2.prepareStageEvents(stage2);
+
+            controller2.setParent(this);
+            if (id != 0) controller2.loadItem(id);            
+
         }
         catch (Exception ex)
         {
