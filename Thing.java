@@ -9,8 +9,8 @@ public class Thing
     /* First, map each of the fields (columns) in your table to some public variables. */
     public int id;
     public String name;
-    public int categoryId
-    ;
+    public int categoryId;
+
     /* Next, prepare a constructor that takes each of the fields as arguements. */
     public Thing(int id, String name, int categoryId)
     {
