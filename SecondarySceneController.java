@@ -72,6 +72,17 @@ public class SecondarySceneController
     {        
         thing = Thing.getById(id);
         nameTextField.setText(thing.name);
+
+        List<Category> targetList = categoryChoiceBox.getItems();
+
+        for(Category c : targetList)
+        {
+            if (c.id == thing.categoryId)
+            {
+                categoryChoiceBox.getSelectionModel().select(c);
+            }                
+        }
+
     }
 
     @FXML   void saveButtonClicked()

@@ -100,7 +100,7 @@ public class Thing
         }
 
     }
-
+    
     public void save()    
     {
         PreparedStatement statement;
