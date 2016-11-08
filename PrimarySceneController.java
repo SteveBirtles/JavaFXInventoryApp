@@ -78,7 +78,7 @@ public class PrimarySceneController
     {
         System.out.println("Preparing stage events...");
 
-        this.stage = stage;
+        PrimarySceneController.stage = stage;
 
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 public void handle(WindowEvent we) {
