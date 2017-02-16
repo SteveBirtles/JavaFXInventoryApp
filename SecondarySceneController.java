@@ -29,7 +29,7 @@ public class SecondarySceneController
     {
         System.out.println("Preparing stage events...");
 
-        SecondarySceneController.stage = stage;
+        this.stage = stage;
 
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 public void handle(WindowEvent we) {
