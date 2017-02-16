@@ -14,7 +14,7 @@ public class SecondarySceneController
     private PrimarySceneController parent;
 
     @FXML   private TextField nameTextField;
-    @FXML   private ChoiceBox categoryChoiceBox;
+    @FXML   private ChoiceBox<Category> categoryChoiceBox;
     @FXML   private Button saveButton;
     @FXML   private Button cancelButton;
 
