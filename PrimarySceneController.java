@@ -18,7 +18,7 @@ public class PrimarySceneController
     /* These FXML variables exactly corrispond to the controls that make up the scene, as designed in Scene 
      * Builder. It is important to ensure that these match perfectly or the controls won't be interactive. */
 
-    @FXML   private ListView mainListView;
+    @FXML   private ListView<Thing> mainListView;
     @FXML   private Button addButton;
     @FXML   private Button editButton;
     @FXML   private Button deleteButton;
